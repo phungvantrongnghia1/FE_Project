@@ -1,0 +1,10 @@
+.git/
+.idea/
+node_modules/*
+build/*
+public/uploads/*
+package-lock.json
+storage
+vendor
+build.zip
+.env

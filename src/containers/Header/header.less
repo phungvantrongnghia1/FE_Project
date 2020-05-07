@@ -1,0 +1,128 @@
+@base-color: #3ea557;
+.vz-popover-scroll,
+.vz-scroll-wishlist {
+  width: 100% !important;
+  margin: 0 !important;
+  .gx-sub-popover {
+    margin: 0 !important;
+    li {
+      padding: 0;
+    }
+  }
+}
+.vz-popover-scroll {
+  h3 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    max-height: 40px;
+    width: 100%;
+    font-size: 12px;
+    font-weight: 700;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.54;
+    letter-spacing: 0.1px;
+    text-align: left;
+    text-overflow: ellipsis;
+    margin: 0px;
+    overflow: hidden;
+  }
+}
+.vz-popover-scroll > div:nth-child(1),
+.vz-scroll-wishlist > div:nth-child(1) {
+  overflow: hidden !important;
+  overflow-y: scroll !important;
+}
+.base-color {
+  background: @base-color !important;
+}
+.gx-custom-logo {
+  padding: 0 !important;
+  width: 100%;
+  -webkit-box-shadow: 0 0 0 0 #fff !important;
+  box-shadow: 0 0 0 0 #fff !important;
+}
+.header {
+  height: 80px !important;
+}
+.header-icon {
+  width: 23px;
+  height: 23px;
+}
+.gx-layout-sider-header {
+  .icon-menu-mobile {
+    i {
+      line-height: 0;
+    }
+  }
+  // logo
+  .gx-site-logo {
+    width: 140px;
+  }
+  // search bar
+  .gx-search-bar {
+    width: 50%;
+    margin-left: 20px;
+    .ant-btn-primary:not([disabled]):not(.disabled):active,
+    .ant-btn-primary:not([disabled]):not(.disabled).active {
+      background-color: #fff !important;
+      border-color: #ccc !important;
+    }
+    .ant-input:focus,
+    .ant-input:focus-within,
+    .ant-input:hover {
+      border-color: #ccc !important;
+    }
+    .ant-input-group-addon {
+      .ant-btn-primary {
+        background-color: #fff !important;
+        border-color: #ccc !important;
+        border-left: none !important;
+        font-size: 24px;
+        color: #404272 !important;
+        box-shadow: none !important;
+      }
+    }
+  }
+  .gx-menu-right {
+    .ant-menu {
+      position: absolute;
+      .ant-menu-submenu > .ant-menu.ant-menu-sub .ant-menu-item {
+        padding-left: 10px !important;
+      }
+      .icon-user {
+        display: inline-block;
+        width: 26px;
+        height: 26px;
+        background-color: #ffa715;
+        border-radius: 50%;
+        line-height: 26px;
+        margin-right: 10px;
+        text-align: center;
+        i {
+          margin: auto;
+          color: #ececec;
+        }
+      }
+    }
+  }
+  .ant-dropdown-menu {
+    border-radius: 0;
+  }
+}
+
+.cart-tooltip {
+  .ant-tooltip-content {
+    width: 350px;
+    .ant-tooltip-arrow {
+      &::before {
+        background: white;
+      }
+    }
+    .ant-tooltip-inner {
+      background: white;
+      position: relative;
+    }
+  }
+}
