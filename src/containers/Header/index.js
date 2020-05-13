@@ -1,69 +1,43 @@
-import React, { useState } from 'react';
-import { withRouter, Link } from 'react-router-dom';
-import { Layout, Icon, Button, Badge, Row, Col } from 'antd';
-
+import React from 'react';
+import { Row, Col, Button, Icon, Input } from 'antd';
 import './header.less';
-const { Header } = Layout;
+const { Search } = Input;
 
-const Index = (props) => {
-  const indicator = document.querySelector('.nav-indicator');
-  const items = document.querySelectorAll('.nav-item');
-
-  function handleIndicator(el) {
-    items.forEach((item) => {
-      item.classList.remove('is-active');
-      item.removeAttribute('style');
-    });
-
-    indicator.style.width = `${el.offsetWidth}px`;
-    indicator.style.left = `${el.offsetLeft}px`;
-    indicator.style.backgroundColor = el.getAttribute('active-color');
-
-    el.classList.add('is-active');
-    el.style.color = el.getAttribute('active-color');
-  }
-
-  items.forEach((item, index) => {
-    item.addEventListener('click', (e) => {
-      handleIndicator(e.target);
-    });
-    item.classList.contains('is-active') && handleIndicator(item);
-  });
+export default function index() {
   return (
-    <Header
-      style={{ position: 'fixed', zIndex: 999, width: '100%' }}
-      className="header"
-    >
-      <Row className="gx-w-100">
-        <Col span={21} className="nav-col-1">
-          <nav className="nav">
-            <a href="#" className="nav-item is-active" active-color="orange">
-              Home
-            </a>
-            <a href="#" className="nav-item" active-color="green">
-              About
-            </a>
-            <a href="#" className="nav-item" active-color="blue">
-              Testimonials
-            </a>
-            <a href="#" className="nav-item" active-color="red">
-              Blog
-            </a>
-            <a href="#" className="nav-item" active-color="rebeccapurple">
-              Contact
-            </a>
-            <span className="nav-indicator"></span>
-          </nav>
-        </Col>
-        <Col span={3}>
-          <span className="nv">
-            <a href="#" className="nav-item nav-col-2" active-color="blue">
-              Login
-            </a>
-          </span>
-        </Col>
-      </Row>
-    </Header>
+    <Row className="header">
+      <Col span={4} className="header_brand">
+        <div className="gx-text-right">
+          <Icon type="fire" className="gx-text-green gx-fs-xxxl" />
+          <span className="gx-font-weight-bold gx-text-white">Share</span>
+        </div>
+      </Col>
+      <Col span={16} className="header_nav">
+        <Row>
+          <Col className="left" span={14}>
+            <ul className="nav gx-mb-0 gx-h-100">
+              <li className="nav_item active">Home</li>
+              <li className="nav_item">My Document</li>
+              <li className="nav_item">Contact</li>
+            </ul>
+          </Col>
+          <Col className="right" span={10}>
+            <Search
+              className="gx-mb-0"
+              placeholder="Tìm kiếm tài liệu"
+              onSearch={(value) => console.log(value)}
+            />
+          </Col>
+        </Row>
+      </Col>
+      <Col span={4} className="header_btn">
+        <Button className="gx-mb-0" type="primary">
+          <Icon type="upload" /> Upload
+        </Button>
+        <Button className="gx-mb-0" type="danger">
+          <Icon type="login" /> Login
+        </Button>
+      </Col>
+    </Row>
   );
-};
-export default withRouter(Index);
+}
