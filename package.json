@@ -31,6 +31,7 @@
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "nprogress": "^0.2.0",
+    "pdf-viewer-reactjs": "^2.0.6",
     "react": "16.9.0",
     "react-app-polyfill": "^1.0.4",
     "react-avatar-editor": "^12.0.0-beta.0",

@@ -8,8 +8,36 @@ const { Footer } = Layout;
 const Index = React.memo(() => {
 
   return (
-    <Footer id="js-footer">
-      Footer
+    <Footer className="footer">
+      <div className="gx-text-center">
+        <Icon type="fire" className="gx-text-green gx-fs-xxxl" />
+        <span className="gx-font-weight-bold gx-text-white">Share</span>
+      </div>
+      <Row className="gx-text-center gx-my-3">
+        <Col span={8} className="gx-text-white">
+          <h1 className="gx-text-white gx-fs-xxl gx-py-3">Hỗ trợ khách hàng</h1>
+          <div className="gx-text-left gx-w-50 gx-m-auto">
+            <p><a href="#" className=" gx-text-white"><Icon type="facebook" /> <span>Facebook</span></a></p>
+            <p><a href="#" className=" gx-text-white"><Icon type="twitter" /> <span>Twitter</span></a></p>
+            <p><a href="#" className=" gx-text-white"><Icon type="skype" /> <span>Skype</span></a></p>
+          </div>
+        </Col>
+        <Col span={8} className="gx-text-left ">
+          <div className=" gx-w-50 gx-m-auto">
+            <h1 className="gx-text-white gx-fs-xxl gx-py-3">Giúp đỡ</h1>
+            <p><a href="#" className=" gx-text-white">Câu hỏi thường gặp</a></p>
+            <p><a href="#" className=" gx-text-white">Điều khoản sử dụng</a></p>
+            <p><a href="#" className=" gx-text-white">Quy định chính sách bán tài liệu</a></p>
+          </div>
+
+
+        </Col>
+        <Col span={8}>
+          <h1 className="gx-text-white gx-fs-xxl gx-py-3">Giới thiệu</h1>
+          <p><a href="#" className=" gx-text-white">share là gì ?</a></p>
+        </Col>
+
+      </Row>
     </Footer>
   );
 });

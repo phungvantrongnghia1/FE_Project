@@ -1,6 +1,7 @@
 import React from 'react'
 import { Breadcrumb, Icon } from 'antd';
 import { Link } from "react-router-dom";
+import "./style.less";
 const routes = [
     {
         path: '',
@@ -20,6 +21,8 @@ export default function index() {
     }
 
     return (
-        <Breadcrumb separator={<Icon type="double-right" />} className="gx-my-3" itemRender={itemRender} routes={routes} />
+        <div className="brandcurm_box">
+            <Breadcrumb separator={<Icon type="double-right" />} className="gx-my-3 brandcurm gx-pb-2 gx-mx-auto" itemRender={itemRender} routes={routes} />
+        </div>
     )
 }
