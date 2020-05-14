@@ -1,6 +1,5 @@
 import React from 'react';
 import Item from "../components/item";
-import Title from "../components/title";
 import { Row, Col, Pagination } from "antd";
 export default function index() {
     return (
