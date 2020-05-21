@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 import { Row, Col, Button, Icon, Input, Modal } from 'antd';
 import UploadDoc from "components/UploadDoc";
 import BrandCurm from "./components/Breadcurm";
@@ -24,8 +25,8 @@ export default function Index() {
       <Row className="header">
         <Col span={4} className="header_brand">
           <div className="gx-text-right">
-            <Icon type="fire" className="gx-text-green gx-fs-xxxl" />
-            <span className="gx-font-weight-bold gx-text-white">Share</span>
+            <Link to="/"><Icon type="fire" className="gx-text-green gx-fs-xxxl" />
+              <span className="gx-font-weight-bold gx-text-white">Share</span></Link>
           </div>
         </Col>
         <Col span={16} className="header_nav">

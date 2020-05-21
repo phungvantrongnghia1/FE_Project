@@ -34,7 +34,7 @@ const Index = React.memo((props) => {
         return (
           <Item
             key={index}
-            docs={item}
+            value={item}
             direction="gx-flex-row gx-course-featured"
             courseImg="course-img"
             courseBody="course-body"

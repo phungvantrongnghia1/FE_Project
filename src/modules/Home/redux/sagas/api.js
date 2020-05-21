@@ -7,3 +7,10 @@ export const getFeatureDocsFromApi =async (data) => {
     })
     return request;
 }
+export const getDocShareFromApi = async (data) => {
+    const request = await axios({
+        method:'get',
+        url:`${process.env.APP_URL}/document-share/get_docs_share/11`
+    })
+    return request;
+}

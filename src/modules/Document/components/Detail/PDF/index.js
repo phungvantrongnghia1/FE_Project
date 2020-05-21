@@ -1,6 +1,6 @@
 import React from 'react'
 import PDFViewer from 'pdf-viewer-reactjs'
- 
+ import "./style.less";
 const ExamplePDFViewer = () => {
     return (
         <PDFViewer canvasCss="pdf gx-text-center"

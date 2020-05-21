@@ -4,9 +4,14 @@
   &_title {
     .ant-card-meta-title {
       transition: 0.6s;
+      font-weight: 900;
+
       &:hover {
         color: #404272;
       }
+    }
+    .ant-card-meta-description{
+      color:gray;
     }
   }
   &_icon {
@@ -21,5 +26,16 @@
   }
   &:hover {
     box-shadow: 0px 3px 6px 1px #98989879;
+  }
+  .ant-card-cover{
+    max-width: 258.4px !important;
+    max-height: 163.54px !important;
+    width: 100% !important;
+    height: 100% !important;
+    img{
+      width: 100%;
+      height: 163.54px;
+      object-fit:fill;
+    }
   }
 }
