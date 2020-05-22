@@ -10,8 +10,7 @@ const Index = React.memo(() => {
   return (
     <Footer className="footer">
       <div className="gx-text-center">
-        <Icon type="fire" className="gx-text-green gx-fs-xxxl" />
-        <span className="gx-font-weight-bold gx-text-white">Share</span>
+        <img style={{ width: 98 }} src="https://scontent.fsgn2-2.fna.fbcdn.net/v/t1.15752-9/98204332_273603697376215_4936225893480660992_n.png?_nc_cat=100&_nc_sid=b96e70&_nc_ohc=J9pnNQa8cNwAX8toYVm&_nc_ht=scontent.fsgn2-2.fna&oh=ea37f8f910cd90f14c50f45fd4e9460b&oe=5EECA556" />
       </div>
       <Row className="gx-text-center gx-my-3">
         <Col span={8} className="gx-text-white">

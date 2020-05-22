@@ -1,11 +1,10 @@
 import React from 'react';
-import { Menu, Dropdown, Icon } from 'antd';
+import { Menu, Dropdown, Icon, Avatar } from 'antd';
 import PropTypes from 'prop-types';
 import './styles.less';
 
 const Index = React.memo(props => {
   const { authUser } = props;
-
   const menu = (
     <Menu onClick={props.handleUserMenu} className="gx-position-relative">
       <Menu.Item key="profile">
@@ -20,8 +19,9 @@ const Index = React.memo(props => {
   );
   return (
     <Dropdown overlayClassName="vz-custom-user-profile" placement="bottomCenter" overlay={menu}>
-      <a className="ant-dropdown-link user-profile-click" onClick={e => e.preventDefault()}>
-        {authUser.last_name} <Icon type="down" />
+      <a className="ant-dropdown-link user-profile-click gx-text-white" onClick={e => e.preventDefault()}>
+      <Avatar icon="user"  className="gx-mr-2"/>
+        {authUser.FullName} <Icon type="down" />
       </a>
     </Dropdown>
   );

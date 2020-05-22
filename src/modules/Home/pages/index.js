@@ -13,7 +13,6 @@ const Index = () => {
     useEffect(() => {
         dispatch(getDocsShare())
     }, [])
-    const data = [{ title: 'a' }, { title: 'a' }, { title: 'a' }, { title: 'a' }, { title: 'a' }, { title: 'a' }, { title: 'a' }, { title: 'a' }]
     const renderDocsShare = useMemo(() => {
         return <Row className="gx-m-0 gx-mt-4">
             {docsShare.map((doc, index) => <Col span={6} key={index}><DocsItem value={doc} /></Col>)}

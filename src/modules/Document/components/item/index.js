@@ -1,41 +1,60 @@
-import React, { useMemo } from 'react'
-import { Card, Icon, Avatar } from 'antd';
+import React, { useMemo, useState } from 'react'
+import { Card, Icon, Modal } from 'antd';
+import UploadDoc from "components/UploadDoc";
 import { Link } from "react-router-dom";
 import "./style.less"
 const { Meta } = Card;
 const Index = (props) => {
-    const { value } = props;
-    console.log(value);
+    const { value, auth } = props;
+    const [visible, setVisible] = useState(false);
+
+    const showModal = () => {
+        setVisible(true);
+    };
+
+    const handleOk = e => {
+        setVisible(false)
+    };
+
+    const handleCancel = e => {
+        setVisible(false)
+    };
     const renderItem = useMemo(() => {
-        return value !== undefined ? (<Link to={`/document-detail/${value.Id}`}>
+        return value !== undefined ? (
             <Card className="document gx-mx-2"
                 cover={
-                    <img
+                    <Link to={`/document-detail/${value.Id}`}> <img
                         alt="example"
                         src={`${process.env.APP_URL}${JSON.parse(value.Image).url}`}
-                    />
+                    /></Link>
+
                 }
-            // actions={[
-            //     <Icon type="file" key="setting" />,
-            //     <Icon type="edit" key="edit" />,
-            //     <Icon type="ellipsis" key="ellipsis" />
-            // ]}
+                actions={!auth ? [
+                    <span key="eye"><Icon type="eye" /> {value.Views}</span>,
+                    <span key="download"><Icon type="download" /> {value.Dowloads}</span>,
+                    <span key="share"><Icon type="share-alt" /> {value.Shares}</span>
+                ] : [<Icon key="update" type="edit" onClick={showModal} />,
+                <Icon key="delete" type="delete" />,
+                <Icon key="share" type="share-alt" />]}
             >
-                <Meta className="document_title"
+                <Link to={`/document-detail/${value.Id}`}>  <Meta className="document_title"
                     title={value.Title} description={value.Content_trailer}
-                />  
-               
-                <div className="document_icon gx-mt-4">
-                    <span><Icon type="eye" /> {value.Views}</span>
-                    <span><Icon type="download" /> {value.Dowloads}</span>
-                    <span><Icon type="share-alt" /> {value.Shares}</span>
-                </div>
+                /></Link>
+
             </Card>
-        </Link>) : <></>
+        ) : <></>
     }, [value])
     return (
         <>
             {renderItem}
+            <Modal
+                title="Cập nhật thông tin tài liệu"
+                visible={visible}
+                onOk={handleOk}
+                onCancel={handleCancel}
+            >
+                <UploadDoc data={value} />
+            </Modal>
         </>
     )
 }

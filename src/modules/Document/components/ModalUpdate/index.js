@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { withRouter } from 'react-router-dom';
-import { Form, Input, Select, Row, Col, Button, Modal,InputNumber } from 'antd';
+import { Form, Input, Select, Row, Col, Button, Modal } from 'antd';
 import FileUpload from "../FileUpload";
 
 import "./style.less";
@@ -10,9 +10,8 @@ const { TextArea } = Input;
 
 const Index = (props) => {
     const refUpload = useRef();
-    const { getFieldDecorator } = props.form,
-        { data } = props;
-    console.log(data);
+    const { getFieldDecorator } = props.form;
+
     const ERR_FORM_MESSAGE = 'Require';
     const dataa = [
         { title: 'abc' },
@@ -43,15 +42,8 @@ const Index = (props) => {
     return (
         <Form layout="inline" className="upload_docs">
             <Row>
-                <Col span={16}>
-                <FormItem label="Tiêu đề">
-                        {getFieldDecorator('title	', {
-                            rules: [{ required: true, message: ERR_FORM_MESSAGE }],
-                            initialValue: ''
-                        })(<Input
-                            placeholder="Tiêu đề"
-                        />)}
-                    </FormItem>
+
+                <Col span={12}>
                     <Form.Item label="Danh mục" className="gx-w-100">
                         {getFieldDecorator('CategoryDocumentId')(
                             <Select
@@ -69,6 +61,8 @@ const Index = (props) => {
                             </Select>
                         )}
                     </Form.Item>
+                </Col>
+                <Col span={12}>
                     <FormItem label="Nội dung tốm tắt">
                         {getFieldDecorator('Content_trailer	', {
                             rules: [{ required: true, message: ERR_FORM_MESSAGE }],
@@ -78,18 +72,12 @@ const Index = (props) => {
                         />)}
                     </FormItem>
                 </Col>
-                <Col span={8}>
-                    <FormItem label="Hình ảnh">
-                        {getFieldDecorator('image', {
-                            rules: [{ required: true, message: ERR_FORM_MESSAGE }],
-                            initialValue: ''
-                        })(<FileUpload actCreate={true} typeFileUpload="application/pdf" />)}
-                    </FormItem>
+                <Col span={12}>
                     <FormItem label="File">
-                        {getFieldDecorator('file', {
+                        {getFieldDecorator('Content_trailer	', {
                             rules: [{ required: true, message: ERR_FORM_MESSAGE }],
                             initialValue: ''
-                        })(<FileUpload actCreate={true} typeFileUpload="application/pdf" />)}
+                        })(<FileUpload actCreate={true} typeFileUpload="application/pdf"/>)}
                     </FormItem>
                 </Col>
             </Row>
@@ -97,7 +85,5 @@ const Index = (props) => {
     );
 };
 Index.propTypes = {};
-Index.defaultProps = {
-    data: {}
-};
+Index.defaultProps = {};
 export default withRouter(Form.create()(Index));

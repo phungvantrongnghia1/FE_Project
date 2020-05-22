@@ -10,17 +10,20 @@
       &_item {
         display: inline-block;
         padding: 15px 20px;
-        font-size: 18px;
-        line-height: 38px;
-        font-weight: 600;
-        color: white;
+
         transition: 0.6s;
         cursor: pointer;
-        &:hover {
+        &:hover a{
           color: #19f5ff;
         }
-        &.active {
+        &.active a{
           color: #19f5ff;
+        }
+        a {
+          font-size: 18px;
+          line-height: 38px;
+          font-weight: 600;
+          color: white;
         }
       }
     }

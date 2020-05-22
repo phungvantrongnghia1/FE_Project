@@ -7,10 +7,11 @@ export const getFeatureDocsFromApi =async (data) => {
     })
     return request;
 }
-export const getDocShareFromApi = async (data) => {
+export const getDocShareFromApi = async (token) => {
     const request = await axios({
         method:'get',
-        url:`${process.env.APP_URL}/document-share/get_docs_share/11`
+        url:`${process.env.APP_URL}/document-share/get_docs_share`,
+        headers: { Authorization: token }
     })
     return request;
 }
