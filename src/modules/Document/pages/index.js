@@ -2,17 +2,17 @@ import React, { useEffect, useMemo } from 'react';
 import Item from "../components/item";
 import { Row, Col, Pagination } from "antd";
 import { useSelector, useDispatch } from "react-redux";
-import { getDocs } from "../redux/actions";
+import { getDocs,getDocsCate } from "../redux/actions";
 const Index = () => {
     const dispatch = useDispatch();
-    const { docsList } = useSelector(state => state.Document);
-    console.log(docsList);
+    const { docsList,docsCate } = useSelector(state => state.Document);
     useEffect(() => {
         dispatch(getDocs())
+        dispatch(getDocsCate())
     }, [])
     const renderDocsShare = useMemo(() => {
         return <Row className="gx-m-0 gx-mt-4">
-            {docsList.map((doc, index) => <Col span={6} key={index}><Item auth={true} value={doc} /></Col>)}
+            {docsList.map((doc, index) => <Col span={6} key={index}><Item auth={true} docsCate={docsCate} value={doc} /></Col>)}
         </Row>
     }, [docsList])
     return (

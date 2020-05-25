@@ -43,9 +43,6 @@ const FileUpload = forwardRef((props, ref) => {
     const typeFile = file.type,
       { size } = file;
     let flag = true;
-    console.log(typeFile);
-    console.log(typeUpload);
-    console.log(file);
     if (typeUpload === 'image') {
       if (typeFile === 'image/jpeg' || typeFile === 'image/png') {
         if (size <= 2097000) {
@@ -73,9 +70,10 @@ const FileUpload = forwardRef((props, ref) => {
       } else {
         message.error('You can only upload MP4, AVI, MOV, WMV file!');
       }
-    } else if (typeUpload === 'application/pdf') {
-      setFileAvatar(file);
-      console.log("vovoovo setfile");
+    } else if (typeUpload === 'application/pdf' && typeFile === 'application/pdf') {
+      setFileAvatar(file.originFileObj);
+    } else if (typeUpload === 'application/pdf' && typeFile !== 'application/pdf') {
+      message.error('Chỉ nhận dạng file pdf!');
     }
     else throw new Error('typeFileUpload must be "image" or "video"');
     return flag;
@@ -105,6 +103,7 @@ const FileUpload = forwardRef((props, ref) => {
         {buttonClick}
       </Upload>
       {fileAvatar ? <p>{fileAvatar.name}</p> : <></>}
+      {url && !fileAvatar ? <a href={`${process.env.APP_URL}${url.url}`} target={"_blank"}>{url.fileName}</a> : <></>}
     </>
   );
 });
@@ -113,7 +112,7 @@ FileUpload.propTypes = {
   actCreate: PropTypes.bool.isRequired, // type action: true => create, false => update
   typeFileUpload: PropTypes.oneOf(['image', 'video', 'application/pdf']),
   buttonClick: PropTypes.node,
-  url: PropTypes.string, // url with type action "false"
+  url: PropTypes.object, // url with type action "false"
   cbOnChange: PropTypes.func
 };
 FileUpload.defaultProps = {

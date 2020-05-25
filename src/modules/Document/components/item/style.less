@@ -10,8 +10,8 @@
         color: #404272;
       }
     }
-    .ant-card-meta-description{
-      color:gray;
+    .ant-card-meta-description {
+      color: gray;
     }
   }
   &_icon {
@@ -27,15 +27,36 @@
   &:hover {
     box-shadow: 0px 3px 6px 1px #98989879;
   }
-  .ant-card-cover{
+  .ant-card-cover {
     max-width: 258.4px !important;
     max-height: 163.54px !important;
     width: 100% !important;
     height: 100% !important;
-    img{
+    img {
       width: 100%;
       height: 163.54px;
-      object-fit:fill;
+      object-fit: fill;
     }
   }
+}
+.dropdown {
+  position: absolute;
+  bottom: 0;
+  right: 6px;
+  .ant-btn-group.ant-dropdown-button {
+    .ant-btn.ant-btn-default:first-child {
+      display: none;
+    }
+    .ant-btn.ant-btn-default:last-child {
+      background-color: transparent;
+      border: transparent;
+      i{
+        font-size: 30px;
+        font-weight: 700;
+      }
+    }
+  }
+}
+.box_document {
+  position: relative;
 }
