@@ -5,6 +5,12 @@ export const getDocs = (payload) => {
         payload
     }
 }
+export const searchDocs = (payload) => {
+    return {
+        type: Types.SEARCH_DOCS,
+        payload
+    }
+}
 export const getDocsSuccess = (payload) => {
     return {
         type: Types.GET_DOCS_SUCCESS,
@@ -44,6 +50,24 @@ export const updateDoc = (payload) => {
 export const updateDocsSuccess = (payload) => {
     return {
         type: Types.UPDATE_DOC_SUCCESS,
+        payload
+    }
+}
+export const deleteDoc = (payload) => {
+    return {
+        type: Types.DELETE_DOC,
+        payload
+    }
+}
+export const deleteDocsSuccess = (payload) => {
+    return {
+        type: Types.DELETE_DOC_SUCCESS,
+        payload
+    }
+}
+export const paginationAction = (payload) => {
+    return {
+        type: Types.PAGINATION,
         payload
     }
 }

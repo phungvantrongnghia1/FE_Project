@@ -1,8 +1,8 @@
 import { all, takeLatest, call, delay, put, fork } from 'redux-saga/effects';
 import Cookie from 'js-cookie';
 import { showLoadingBtn, hideLoadingBtn } from "base/redux/General/GeneralAction";
-import { getDocsFromApi, getDocsCateFromApi, createDocFromApi,updateDocFromApi } from "./api";
-import { getDocsSuccess, getDocsCateSuccess, createDocsSuccess,updateDocsSuccess } from "../actions"
+import { getDocsFromApi, getDocsCateFromApi, createDocFromApi, updateDocFromApi, deleteDocFromApi } from "./api";
+import { getDocsSuccess, getDocsCateSuccess, createDocsSuccess, updateDocsSuccess, deleteDocsSuccess } from "../actions"
 import * as Types from "../contants";
 
 const MESS_ERR = "Lỗi hệ thống";
@@ -75,6 +75,25 @@ function* onUpdateDoc(action) {
         yield put(hideLoadingBtn());
     }
 }
+function* onDeleteDoc(action) {
+    const { payload, callbackSuccess, callbackEror } = action.payload;
+    yield put(showLoadingBtn());
+    try {
+        yield delay(500, true);
+        const response = yield call(deleteDocFromApi, payload, Cookie.get('cookie'));
+        console.log(response);
+        if (response.data.status_code === 200) {
+            yield callbackSuccess(response.data.message);
+            yield put(deleteDocsSuccess(response.data.data))
+        } else {
+            yield callbackEror();
+        }
+        yield put(hideLoadingBtn());
+    } catch (err) {
+        console.log(MESS_ERR);
+        yield put(hideLoadingBtn());
+    }
+}
 
 
 function* watchOnGetDocs() {
@@ -91,12 +110,15 @@ function* watchOnCreateDoc() {
 function* watchOnUpdateDoc() {
     yield takeLatest(Types.UPDATE_DOC, onUpdateDoc);
 }
-
+function* watchOnDeleteDoc() {
+    yield takeLatest(Types.DELETE_DOC, onDeleteDoc);
+}
 export default function* rootSaga() {
     yield all([
         fork(watchOnGetDocs),
         fork(watchOnGetDocsCate),
         fork(watchOnCreateDoc),
-        fork(watchOnUpdateDoc)
+        fork(watchOnUpdateDoc),
+        fork(watchOnDeleteDoc)
     ])
 }

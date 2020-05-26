@@ -46,7 +46,6 @@ const Index = (props) => {
     return result;
   };
   const createCate = (payload) => {
-    console.log(payload);
     dispatch(
       createDoc({
         payload,
@@ -63,7 +62,6 @@ const Index = (props) => {
     );
   };
   const updateDocFc = (payload) => {
-    console.log(payload);
     dispatch(
       updateDoc({
         payload,
@@ -86,8 +84,6 @@ const Index = (props) => {
     props.form.validateFieldsAndScroll((err, values) => {
       const image = refUploadImage.current._onGetFile();
       const file = refUploadFile.current._onGetFile();
-      console.log('image :>> ', image);
-      console.log('file :>> ', file);
       let formData = new FormData();
       Object.entries(values).map(([key, value]) => formData.append(key, value));
       if (image !== null && file !== null && typeAc) {

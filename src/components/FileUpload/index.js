@@ -112,7 +112,6 @@ FileUpload.propTypes = {
   actCreate: PropTypes.bool.isRequired, // type action: true => create, false => update
   typeFileUpload: PropTypes.oneOf(['image', 'video', 'application/pdf']),
   buttonClick: PropTypes.node,
-  url: PropTypes.object, // url with type action "false"
   cbOnChange: PropTypes.func
 };
 FileUpload.defaultProps = {

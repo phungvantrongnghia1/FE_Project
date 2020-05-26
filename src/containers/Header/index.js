@@ -3,7 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Row, Col, Button, Icon, Input, Modal } from 'antd';
 import { logOut, showModalLogin } from 'modules/Account/redux/actions';
-import { getDocsCate } from "modules/Document/redux/actions";
+import { getDocsCate, searchDocs } from "modules/Document/redux/actions";
 import UserProfile from './components/UserProfile';
 import SignIn from 'modules/Account/SignIn';
 import UploadDoc from "components/UploadDoc";
@@ -17,8 +17,12 @@ const Index = (props) => {
   const [visible, setVisible] = useState(false),
     { authUser, isLogin } = useSelector((state) => state.AuthReducer),
     [showText, setShowText] = useState(false);
+  const url = new URLSearchParams(location.search);
   useEffect(() => {
     dispatch(getDocsCate())
+    if (url.get('t') !== null) {
+      props.history.push({ search: `` })
+    }
   }, [])
   const showModal = () => {
     if (authUser)
@@ -48,6 +52,16 @@ const Index = (props) => {
       props.history.push('/profile');
     }
   };
+  const handleSearch = value => {
+    props.history.push({ search: `?t=${value}` })
+    dispatch(searchDocs(value))
+  }
+  const handleChangeSearch = value => {
+    if (value.target.value === '') {
+      dispatch(searchDocs(value.target.value))
+      props.history.push({ search: `` })
+    }
+  }
   return (
     <>
       <Row className="header gx-px-4">
@@ -69,7 +83,8 @@ const Index = (props) => {
               <Search
                 className="gx-mb-0"
                 placeholder="Tìm kiếm tài liệu"
-                onSearch={(value) => console.log(value)}
+                onSearch={(value) => handleSearch(value)}
+                onChange={value => handleChangeSearch(value)}
               />
             </Col>
           </Row>

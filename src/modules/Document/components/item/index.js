@@ -1,11 +1,11 @@
 import React, { useMemo, useState } from 'react';
-import { Card, Icon, Modal, Dropdown, message, Menu } from 'antd';
+import { Card, Icon, Modal, Dropdown, message, Menu, Popconfirm } from 'antd';
 import UploadDoc from 'components/UploadDoc';
 import { Link } from 'react-router-dom';
 import './style.less';
 const { Meta } = Card;
 const Index = (props) => {
-  const { value, auth ,docsCate } = props;
+  const { value, auth, docsCate, deleteDocs } = props;
   const [visible, setVisible] = useState(false);
   const showModal = () => {
     setVisible(true);
@@ -18,17 +18,24 @@ const Index = (props) => {
   const handleCancel = (e) => {
     setVisible(false);
   };
-  function handleButtonClick(e) {
-    message.info('Click on left button.');
+  const handleButtonClick = (e) => {
     console.log('click left button', e);
   }
   const checkTitle = (title) => {
     let result = title;
-    if(title.length > 28){
-      result = title.slice(0,24) + "..."
+    if (title.length > 28) {
+      result = title.slice(0, 24) + "..."
     }
     return result;
   }
+  const confirm = (e) => {
+    deleteDocs(value.Id)
+  }
+
+  const cancel = (e) => {
+    message.error('Click on No');
+  }
+
   const menu = (
     <Menu>
       <Menu.Item key="1" onClick={showModal}>
@@ -40,8 +47,15 @@ const Index = (props) => {
         Chia sẽ
       </Menu.Item>
       <Menu.Item key="3">
-        <Icon type="delete" />
-        Xóa
+        <Popconfirm
+          title="Bạn có chất muốn xóa tài liệu này không?"
+          onConfirm={confirm}
+          onCancel={cancel}
+          okText="Yes"
+          cancelText="No"
+        > <Icon type="delete" />
+        Xóa</Popconfirm>
+
       </Menu.Item>
     </Menu>
   );
@@ -71,8 +85,8 @@ const Index = (props) => {
               </span>
             ]
           ) : (
-            <></>
-          )
+              <></>
+            )
         }
       >
         <Link to={`/document-detail/${value.Id}`}>
@@ -84,8 +98,8 @@ const Index = (props) => {
         </Link>
       </Card>
     ) : (
-      <></>
-    );
+        <></>
+      );
   }, [value]);
   return (
     <div className="box_document">
@@ -97,7 +111,7 @@ const Index = (props) => {
         onCancel={handleCancel}
         footer={null}
       >
-        <UploadDoc data={value} typeAc={false} docsCate={docsCate}/>
+        <UploadDoc data={value} typeAc={false} docsCate={docsCate} />
       </Modal>
       {auth ? (
         <div className="dropdown">
@@ -108,8 +122,8 @@ const Index = (props) => {
           ></Dropdown.Button>
         </div>
       ) : (
-        <></>
-      )}
+          <></>
+        )}
     </div>
   );
 };
