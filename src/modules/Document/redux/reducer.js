@@ -13,7 +13,8 @@ const initialState = {
         currentPage: 1,
         pageSize: 12,
         totalPages: 0
-    }
+    },
+    docsDetail:{}
 };
 export default function NewsPreducer(state = initialState, action) {
     const { payload } = action;
@@ -62,6 +63,10 @@ export default function NewsPreducer(state = initialState, action) {
                 let paginationUpdate = { ...state.pagination };
                 paginationUpdate.currentPage = payload;
                 draft.pagination = paginationUpdate
+                break;
+            }
+            case Types.GET_DOCS_DETAIL_SUCCESS: {
+                draft.docsDetail = payload
                 break;
             }
         }

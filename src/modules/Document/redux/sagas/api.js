@@ -8,6 +8,15 @@ export const getDocsFromApi = async (data, token) => {
     })
     return request;
 }
+export const getDocsDetailFromApi = async (data, token) => {
+    console.log('data :>> ', data);
+    const request = await axios({
+        method: 'get',
+        url: `${process.env.APP_URL}/document/detail/${data}`,
+        headers: { Authorization: token }
+    })
+    return request;
+}
 export const getDocsCateFromApi = async (token) => {
     const request = await axios({
         method: 'get',
@@ -38,6 +47,14 @@ export const deleteDocFromApi = async (data,token) => {
     const request = await axios({
         method: 'delete',
         url: `${process.env.APP_URL}/document/delete/${data}`,
+        headers: { Authorization: token }
+    })
+    return request;
+}
+export const shareDocsFromApi = async (data,token) => {
+    const request = await axios({
+        method: 'post',
+        url: `${process.env.APP_URL}/document-share/share`,
         headers: { Authorization: token },
         data:data
     })

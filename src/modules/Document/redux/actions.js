@@ -5,6 +5,18 @@ export const getDocs = (payload) => {
         payload
     }
 }
+export const getDocsDetail = (payload) => {
+    return {
+        type: Types.GET_DOCS_DETAIL,
+        payload
+    }
+}
+export const getDocsDetailSuccess = (payload) => {
+    return {
+        type: Types.GET_DOCS_DETAIL_SUCCESS,
+        payload
+    }
+}
 export const searchDocs = (payload) => {
     return {
         type: Types.SEARCH_DOCS,
@@ -68,6 +80,12 @@ export const deleteDocsSuccess = (payload) => {
 export const paginationAction = (payload) => {
     return {
         type: Types.PAGINATION,
+        payload
+    }
+}
+export const shareDocsAction = (payload) => {
+    return {
+        type: Types.SHARE_DOCS,
         payload
     }
 }

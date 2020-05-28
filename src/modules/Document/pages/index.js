@@ -7,7 +7,8 @@ import {
   getDocs,
   getDocsCate,
   deleteDoc,
-  paginationAction
+  paginationAction,
+  shareDocsAction
 } from '../redux/actions';
 const Index = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,19 @@ const Index = () => {
     dispatch(getDocs());
     dispatch(getDocsCate());
   }, []);
+  const shareDocs = (payload) => {
+    dispatch(
+      shareDocsAction({
+        payload,
+        callbackSuccess: (message) => {
+          NotificationManager.success(message, '', 2000);
+        },
+        callbackError: (message) => {
+          NotificationManager.error(message, '', 2000);
+        }
+      })
+    );
+  };
   const deleteDocs = (payload) => {
     dispatch(
       deleteDoc({
@@ -31,9 +45,7 @@ const Index = () => {
       })
     );
   };
-  console.log('pagination', pagination);
   const handlePagination = (current) => {
-    console.log('current', current);
     dispatch(paginationAction(current));
   };
   const renderDocsearch = useMemo(() => {
@@ -46,6 +58,7 @@ const Index = () => {
               docsCate={docsCate}
               value={doc}
               deleteDocs={deleteDocs}
+              shareDocs={shareDocs}
             />
           </Col>
         ))}
@@ -65,6 +78,7 @@ const Index = () => {
               docsCate={docsCate}
               value={doc}
               deleteDocs={deleteDocs}
+              shareDocs={shareDocs}
             />
           </Col>
         ))}
