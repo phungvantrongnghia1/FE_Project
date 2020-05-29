@@ -89,3 +89,9 @@ export const shareDocsAction = (payload) => {
         payload
     }
 }
+export const reShareDocsAction = (payload) => {
+    return {
+        type: Types.RE_SHARE_DOCS,
+        payload
+    }
+}

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Row, Col, Button, Icon, Input, Modal } from 'antd';
 import { logOut, showModalLogin } from 'modules/Account/redux/actions';
 import { getDocsCate, searchDocs } from "modules/Document/redux/actions";
+import { searchDocsHome } from "modules/Home/redux/actions";
 import UserProfile from './components/UserProfile';
 import SignIn from 'modules/Account/SignIn';
 import UploadDoc from "components/UploadDoc";
@@ -53,12 +54,20 @@ const Index = (props) => {
     }
   };
   const handleSearch = value => {
-    props.history.push({ search: `?t=${value}` })
-    dispatch(searchDocs(value))
+    props.history.push({ search: `?t=${value}` });
+    let keySearch = props.location.pathname;
+    if (keySearch.indexOf('document') === 1)
+      dispatch(searchDocs(value))
+    dispatch(searchDocsHome(value))
+
   }
   const handleChangeSearch = value => {
+
     if (value.target.value === '') {
-      dispatch(searchDocs(value.target.value))
+      let keySearch = props.location.pathname;
+      if (keySearch.indexOf('document') === 1)
+        dispatch(searchDocs(value.target.value))
+      dispatch(searchDocsHome(value.target.value))
       props.history.push({ search: `` })
     }
   }

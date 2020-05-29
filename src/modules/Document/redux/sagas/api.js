@@ -1,15 +1,14 @@
 import axios from "axios";
 
-export const getDocsFromApi = async (data, token) => {
+export const getDocsFromApi = async (token) => {
     const request = await axios({
         method: 'get',
-        url: `${process.env.APP_URL}/document/list/4`,
+        url: `${process.env.APP_URL}/document/list`,
         headers: { Authorization: token }
     })
     return request;
 }
 export const getDocsDetailFromApi = async (data, token) => {
-    console.log('data :>> ', data);
     const request = await axios({
         method: 'get',
         url: `${process.env.APP_URL}/document/detail/${data}`,
@@ -55,6 +54,15 @@ export const shareDocsFromApi = async (data,token) => {
     const request = await axios({
         method: 'post',
         url: `${process.env.APP_URL}/document-share/share`,
+        headers: { Authorization: token },
+        data:data
+    })
+    return request;
+}
+export const reShareDocsFromApi = async (data,token) => {
+    const request = await axios({
+        method: 'post',
+        url: `${process.env.APP_URL}/document-share/re-share`,
         headers: { Authorization: token },
         data:data
     })

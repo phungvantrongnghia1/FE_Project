@@ -32,6 +32,7 @@ const Index = () => {
       })
     );
   };
+
   const deleteDocs = (payload) => {
     dispatch(
       deleteDoc({

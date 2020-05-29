@@ -22,3 +22,15 @@ export const getDocsShareSuccess = (payload) => {
         payload
     }
 }
+export const searchDocsHome = (payload) => {
+    return {
+        type: Types.SEARCH_DOCS_HEADER,
+        payload
+    }
+}
+export const paginationAction = (payload) => {
+    return {
+        type: Types.PAGINATION,
+        payload
+    }
+}

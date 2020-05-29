@@ -11,7 +11,8 @@ import {
   updateDocFromApi,
   deleteDocFromApi,
   shareDocsFromApi,
-  getDocsDetailFromApi
+  getDocsDetailFromApi,
+  reShareDocsFromApi
 } from './api';
 import {
   getDocsSuccess,
@@ -29,7 +30,7 @@ function* onGetDocs(action) {
   yield put(showLoadingBtn());
   try {
     yield delay(500, true);
-    const response = yield call(getDocsFromApi, '', Cookie.get('cookie'));
+    const response = yield call(getDocsFromApi, Cookie.get('cookie'));
     if (response.data.status_code === 200) {
       yield put(getDocsSuccess(response.data.data));
     }
@@ -41,7 +42,6 @@ function* onGetDocs(action) {
 }
 function* ongetDocsDetail(action) {
   const { payload } = action;
-  console.log('action.payload :>> ', action.payload);
   yield put(showLoadingBtn());
   try {
     yield delay(500, true);
@@ -50,7 +50,6 @@ function* ongetDocsDetail(action) {
       payload,
       Cookie.get('cookie')
     );
-    console.log(response);
     if (response.data.status_code === 200) {
       yield put(getDocsDetailSuccess(response.data.data));
     }
@@ -168,6 +167,30 @@ function* onShareDocs(action) {
   }
 }
 
+function* onReShareDocs(action) {
+  const { payload, callbackSuccess, callbackEror } = action.payload;
+  yield put(showLoadingBtn());
+  try {
+    yield delay(500, true);
+    const response = yield call(
+      reShareDocsFromApi,
+      payload,
+      Cookie.get('cookie')
+    );
+    console.log(response);
+    if (response.data.status_code === 200) {
+      yield callbackSuccess(response.data.message);
+      // yield put(deleteDocsSuccess(response.data.data))
+    } else {
+      yield callbackEror();
+    }
+    yield put(hideLoadingBtn());
+  } catch (err) {
+    console.log(MESS_ERR);
+    yield put(hideLoadingBtn());
+  }
+}
+
 function* watchOnGetDocs() {
   yield takeLatest(Types.GET_DOCS, onGetDocs);
 }
@@ -193,6 +216,10 @@ function* watchOnDeleteDoc() {
 function* watchOnShareDocs() {
   yield takeLatest(Types.SHARE_DOCS, onShareDocs);
 }
+
+function* watchOnReShareDocs() {
+  yield takeLatest(Types.RE_SHARE_DOCS, onReShareDocs);
+}
 export default function* rootSaga() {
   yield all([
     fork(watchOnGetDocs),
@@ -201,6 +228,7 @@ export default function* rootSaga() {
     fork(watchOnUpdateDoc),
     fork(watchOnDeleteDoc),
     fork(watchOnShareDocs),
-    fork(watchOnGetDocsDetail)
+    fork(watchOnGetDocsDetail),
+    fork(watchOnReShareDocs)
   ]);
 }

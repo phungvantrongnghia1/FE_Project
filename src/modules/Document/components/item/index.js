@@ -7,10 +7,11 @@ const { Meta } = Card;
 const FormItem = Form.Item;
 
 const Index = (props) => {
-  const { value, auth, docsCate, deleteDocs, shareDocs } = props;
+  const { value, auth, docsCate, deleteDocs, shareDocs, reShareDocs } = props;
   const { getFieldDecorator } = props.form;
   const [visible, setVisible] = useState(false);
   const [visibleShare, setVisibleShare] = useState(false);
+  const [visibleReShare, setVisibleReShare] = useState(false);
   const saveInputRef = useRef();
   const ERR_FORM_MESSAGE = 'Require';
   const [stateTag, setStateTag] = useState({
@@ -28,7 +29,10 @@ const Index = (props) => {
       id: value.Id,
       user_Share: [...stateTag.tags]
     }
-    shareDocs(payload);
+    if (visibleShare)
+      shareDocs(payload);
+    else
+      reShareDocs(payload)
   };
 
   const handleCancel = (e) => {
@@ -123,7 +127,7 @@ const Index = (props) => {
               <span key="download">
                 <Icon type="download" /> {value.Dowloads}
               </span>,
-              <span key="share">
+              <span key="share" onClick={() => setVisibleReShare(true)}>
                 <Icon type="share-alt" /> {value.Shares}
               </span>
             ]
@@ -158,9 +162,13 @@ const Index = (props) => {
       </Modal>
       <Modal
         title="Chia sẻ tài liệu"
-        visible={visibleShare}
+        visible={visibleShare || visibleReShare}
         onOk={handleOk}
-        onCancel={() => setVisibleShare(false)}
+        onCancel={() => {
+          if (visibleShare)
+            setVisibleShare(false)
+          else setVisibleReShare(false)
+        }}
       >
         <div>
           {stateTag.tags.map((tag, index) => {
