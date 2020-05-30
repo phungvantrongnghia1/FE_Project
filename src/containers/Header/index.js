@@ -48,6 +48,7 @@ const Index = (props) => {
   const handleUserMenu = (e) => {
     if (e.key === 'logout') {
       dispatch(logOut());
+      location.reload();
     }
     if (e.key === 'profile') {
       props.history.push('/profile');

@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo } from 'react';
 import Item from '../components/item';
-import { Row, Col, Pagination } from 'antd';
+import { Row, Col, Pagination, Result, Button } from 'antd';
+import { showModalLogin } from 'modules/Account/redux/actions';
 import { useSelector, useDispatch } from 'react-redux';
 import { NotificationManager } from 'react-notifications';
 import {
@@ -14,7 +15,8 @@ const Index = () => {
   const dispatch = useDispatch();
   const { docsList, docsCate, docsSearch, pagination } = useSelector(
     (state) => state.Document
-  );
+  ),
+    { authUser } = useSelector((state) => state.AuthReducer);
   useEffect(() => {
     dispatch(getDocs());
     dispatch(getDocsCate());
@@ -45,6 +47,9 @@ const Index = () => {
         }
       })
     );
+  };
+  const _onShowLogin = (boolean) => {
+    dispatch(showModalLogin(boolean));
   };
   const handlePagination = (current) => {
     dispatch(paginationAction(current));
@@ -88,19 +93,29 @@ const Index = () => {
   }, [docsList, pagination]);
   return (
     <>
-      {docsSearch.length !== 0 && docsSearch.status ? (
-        <>{renderDocsearch}</>
-      ) : (
-        <>{renderDocsShare}</>
-      )}
-      <div className="gx-text-center">
-        <Pagination
-          pageSize={12}
-          current={pagination.currentPage}
-          onChange={handlePagination}
-          total={pagination.totalPages * 10}
-        />
-      </div>
+      {authUser ? <>
+        {
+          docsSearch.length !== 0 && docsSearch.status ? (
+            <>{renderDocsearch}</>
+          ) : (
+              <>{renderDocsShare}</>
+            )
+        }
+        <div className="gx-text-center">
+          <Pagination
+            pageSize={12}
+            current={pagination.currentPage}
+            onChange={handlePagination}
+            total={pagination.totalPages * 10}
+          />
+        </div>
+      </> : <Result
+          status="403"
+          title="403"
+          subTitle="Bạn cần đăng nhập để có thể truy cập được trang này!"
+          extra={<Button type="primary" onClick={() => _onShowLogin(true)}>Đăng nhập</Button>}
+        />}
+
     </>
   );
 };

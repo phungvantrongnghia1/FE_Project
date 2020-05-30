@@ -79,6 +79,7 @@ const Index = React.memo(props => {
               if (status_code === 200) {
                 props.hideModal();
                 // login success with cart
+                location.reload();
               } else {
                 // login failed
                 NotificationManager.warning(description, '', 10000);
