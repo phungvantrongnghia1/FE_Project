@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, withRouter } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Row, Col, Button, Icon, Input, Modal } from 'antd';
+import { Row, Col, Button, Icon, Input, Modal, Carousel } from 'antd';
 import { logOut, showModalLogin } from 'modules/Account/redux/actions';
 import { getDocsCate, searchDocs } from "modules/Document/redux/actions";
 import { searchDocsHome } from "modules/Home/redux/actions";
@@ -35,7 +35,12 @@ const Index = (props) => {
   const handleOk = e => {
     setVisible(false)
   };
-
+  const checkLocation = () => {
+    let { pathname } = props.location;
+    let patt = /document/i;
+    return pathname.search(patt) >= 0 ? true : false;
+  }
+  checkLocation()
   const handleCancel = e => {
     setVisible(false)
   };
@@ -84,8 +89,8 @@ const Index = (props) => {
           <Row>
             <Col className="left" span={14}>
               <ul className="nav gx-mb-0 gx-h-100">
-                <li className="nav_item active"><Link to="/">Trang chủ</Link></li>
-                <li className="nav_item"><Link to="/document">Tài liệu</Link></li>
+                <li className={`${!checkLocation() ? "active" : ""} nav_item`}><Link to="/">Trang chủ</Link></li>
+                <li className={`${checkLocation() ? "active" : ""} nav_item`}><Link to="/document">Tài liệu</Link></li>
                 <li className="nav_item"><Link to="/">Liên Hệ</Link></li>
               </ul>
             </Col>
@@ -125,8 +130,10 @@ const Index = (props) => {
           </div>
         </Col>
       </Row>
-      <BrandCurm />
-
+      <div>
+          <img src="https://hoctap-viezon.tuoitresoft.com/static/media/3wXdI_6.png" />
+        </div>
+       <BrandCurm/>       
       <Modal
         title="Tải tài liệu lên"
         visible={visible}

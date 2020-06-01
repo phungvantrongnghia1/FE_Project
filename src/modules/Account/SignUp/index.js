@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { NotificationManager } from 'react-notifications';
 import { Form, Input, Icon, Checkbox } from 'antd';
 import { Container } from '../common/Container';
-// import { signUp } from '../redux/actions';
+import { signUp } from '../redux/actions';
 import ForgotPassword from '../ForgotPassword';
 import './signUp.less';
 
@@ -14,9 +14,7 @@ const FormItem = Form.Item;
 const Index = (props) => {
   const dispatch = useDispatch();
   const { showText, toggleContent } = props;
-  const { getFieldDecorator } = props.form,
-    { checkProvision, setCheckProvision } = useState(false);
-
+  const { getFieldDecorator } = props.form;
   /**
    * @function handleSubmit
    * @summary call api sign in and close modal
@@ -25,21 +23,27 @@ const Index = (props) => {
     e.preventDefault();
     props.form.validateFields((err, values) => {
       if (!err) {
-        // dispatch(
-        //   signUp({
-        //     info: values,
-        //     callback: (description, status_code) => {
-        //       if (status_code === 200) {
-        //         props.form.resetFields();
-        //         NotificationManager.success(description, null, 5000);
-        //         props.hideModal();
-        //       }
-        //     },
-        //     errorCallback: (error) => {
-        //       NotificationManager.warning(error, null, 5000);
-        //     }
-        //   })
-        // );
+        console.log('values :>> ', values);
+        let infor = {
+          FullName:values.first_name + values.last_name,
+          Email:values.email,
+          Password:values.password
+        };
+        dispatch(
+          signUp({
+            info: infor,
+            callback: (description, status_code) => {
+              if (status_code === 200) {
+                props.form.resetFields();
+                NotificationManager.success(description, null, 5000);
+                props.hideModal();
+              }
+            },
+            errorCallback: (error) => {
+              NotificationManager.warning(error, null, 5000);
+            }
+          })
+        );
       }
     });
   };

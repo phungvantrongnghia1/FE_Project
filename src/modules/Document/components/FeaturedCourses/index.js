@@ -46,7 +46,7 @@ const Index = React.memo((props) => {
   };
 
   return (
-    <div className="featured-courses  mobile-hidden">
+    <div className="featured-courses  mobile-hidden gx-mt-3">
       <Title
         title={props.title}
         subTitle="Phần nội dung này sẽ giới thiệu đến các bạn các khóa học được đánh giá là nổi bật"

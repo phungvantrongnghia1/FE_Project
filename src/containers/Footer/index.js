@@ -15,7 +15,7 @@ const Index = React.memo(() => {
       <Row className="gx-text-center gx-my-3">
         <Col span={8} className="gx-text-white">
           <h1 className="gx-text-white gx-fs-xxl gx-py-3">Hỗ trợ khách hàng</h1>
-          <div className="gx-text-left gx-w-50 gx-m-auto">
+          <div className="gx-text-left gx-w-50 gx-m-auto  gx-pl-3">
             <p><a href="#" className=" gx-text-white"><Icon type="facebook" /> <span>Facebook</span></a></p>
             <p><a href="#" className=" gx-text-white"><Icon type="twitter" /> <span>Twitter</span></a></p>
             <p><a href="#" className=" gx-text-white"><Icon type="skype" /> <span>Skype</span></a></p>

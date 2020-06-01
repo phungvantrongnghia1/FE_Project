@@ -45,19 +45,11 @@ const MESS_ERR = 'Lỗi hệ thống';
 
 function* onSignUp(action) {
   const { info, callback, errorCallback } = action.payload;
-  info['username'] = info.email;
-  // info["sponsorKey"] = "test";
-  // info["phone_number"] = "123456789";
-  // info["country"] = "Vietnam";
-  // info["province"] = null;
-  // info["address"] = null;
-  // info["gender"] = "gay";
   yield put(showLoadingBtn());
   try {
     yield delay(500, true);
     const response = yield call(signUpFromApi, info);
     if (response.data.status_code === 200) {
-      yield put(signUpSuccess(response.data.data));
       yield callback(response.data.message, response.data.status_code);
     } else {
       yield errorCallback(response.data.message);
@@ -70,7 +62,6 @@ function* onSignUp(action) {
 }
 
 function* onLogin({ payload }) {
-  console.log("vo login");
   const { data, cbSuccess, cbError } = payload;
   try {
     yield delay(500, true);

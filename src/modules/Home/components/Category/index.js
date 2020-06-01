@@ -1,22 +1,29 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import { Menu, Dropdown, Icon, Row, Col, Button } from 'antd';
 import "./style.less"
-const Index = () => {
-    const [category, setCategory] = useState('Tất cả')
-    const menu = (
+const Index = (props) => {
+    const [category, setCategory] = useState('Tất cả'),
+        { docsCate } = props;
+    const menu = useMemo(() => {
+        return (
+            <Menu onClick={value => setCategory(value.key)}>
+                {
+                    docsCate.map(doc => (<Menu.Item key={doc.Title}>
+                        {doc.Title}
+                    </Menu.Item>))
+                }
+            </Menu>
+        );
+    }, [docsCate])
+    const menuFile = () => (
         <Menu onClick={value => setCategory(value.key)}>
-            <Menu.Item key="1st">
-                1st menu item
-            </Menu.Item>
-            <Menu.Item key="2st">
-                2nd menu item
-            </Menu.Item>
-            <Menu.Item key="3st">
-                3rd menu item
-            </Menu.Item>
-        </Menu>
-    );
 
+            <Menu.Item key="pdf">
+                PDF
+                </Menu.Item>
+
+        </Menu>
+    )
     return (
         <Row className="category gx-bg-white gx-m-0">
             <Col span={18} className=" category_dropdown centered">
@@ -30,9 +37,9 @@ const Index = () => {
                 </div>
                 <div className="dropdown_box">
                     <span className="gx-mr-2">Loại file:</span>
-                    <Dropdown className="" overlay={menu}>
+                    <Dropdown className="" overlay={menuFile}>
                         <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-                            Hover me <Icon type="down" />
+                            PDF <Icon type="down" />
                         </a>
                     </Dropdown>
                 </div>

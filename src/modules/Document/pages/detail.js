@@ -22,9 +22,9 @@ const Index = (props) => {
         return <></>
     }, [docsDetail])
     return (
-        <div>
+        <div className="gx-mt-3">
             <Title title={docsDetail.Title} />
-            <Auth user={docsDetail.user} />
+            <Auth docsDetail={docsDetail} />
             {renderPDF}
             <Content docsDetail={docsDetail} />
             <h2 className="gx-font-weight-bold">Bình luận</h2>

@@ -3,14 +3,13 @@ import axios from "axios";
 export const signUpFromApi = async data => {
   const request = await axios({
     method: "post",
-    url: `${process.env.APP_URL}/customer/signup`,
+    url: `${process.env.APP_URL}/user/register`,
     data
   });
   return request;
 };
 
 export const loginFromApi = async data => {
-  console.log("data >>",data);
   const request = await axios({
     method: "post",
     url: `${process.env.APP_URL}/user/login`,

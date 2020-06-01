@@ -4,29 +4,34 @@ import { useSelector, useDispatch } from "react-redux";
 import { NotificationManager } from 'react-notifications';
 import Category from "../components/Category";
 import FeatureDocument from "../../Document/components/FeaturedCourses";
-import { getDocsShare,paginationAction } from "../redux/actions";
+import { getDocsShare, paginationAction } from "../redux/actions";
 import DocsItem from "../../Document/components/item";
-import {reShareDocsAction} from "../../Document/redux/actions"
+import { reShareDocsAction, getDocsCate } from "../../Document/redux/actions"
 const Index = () => {
     const dispatch = useDispatch();
-    const { docsShare,pagination,docsSearch } = useSelector(state => state.Home);
+    const { docsShare, pagination, docsSearch } = useSelector(state => state.Home);
+    const { docsCate } = useSelector(
+        (state) => state.Document
+    )
+    console.log('docsCate :>> ', docsCate);
     console.log(docsShare);
     useEffect(() => {
         dispatch(getDocsShare())
+        dispatch(getDocsCate());
     }, [])
     const reShareDocs = (payload) => {
         dispatch(
-          reShareDocsAction({
-            payload,
-            callbackSuccess: (message) => {
-              NotificationManager.success(message, '', 2000);
-            },
-            callbackError: (message) => {
-              NotificationManager.error(message, '', 2000);
-            }
-          })
+            reShareDocsAction({
+                payload,
+                callbackSuccess: (message) => {
+                    NotificationManager.success(message, '', 2000);
+                },
+                callbackError: (message) => {
+                    NotificationManager.error(message, '', 2000);
+                }
+            })
         );
-      };
+    };
     const handlePagination = (current) => {
         dispatch(paginationAction(current));
     };
@@ -67,7 +72,7 @@ const Index = () => {
         <div>
             <FeatureDocument title="Tài liệu nổi bật" data={docsShare} />
             <h5 className="gx-py-2 gx-m-0 gx-font-weight-bold"><Icon className="gx-mr-2" type="double-right" />Tất cả tài liệu</h5>
-            <Category />
+            <Category docsCate={docsCate}/>
             {docsSearch.length !== 0 && docsSearch.status ? (
                 <>{renderDocsearch}</>
             ) : (

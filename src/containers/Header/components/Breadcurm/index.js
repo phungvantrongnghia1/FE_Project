@@ -1,28 +1,30 @@
 import React from 'react'
-import { Breadcrumb, Icon } from 'antd';
-import { Link } from "react-router-dom";
+import { Row, Col, Icon } from "antd";
+
 import "./style.less";
-const routes = [
-    {
-        path: '',
-        breadcrumbName: 'home',
-        icon: 'home'
-    },
-    {
-        path: 'first',
-        breadcrumbName: 'My docs',
-        icon: 'file-pdf'
-    }
-];
-
-export default function index() {
-    const itemRender = (route, params, routes, paths) => {
-        return <Link to={paths.join('/')}><Icon className="gx-font-weight-bold" type={route.icon} /> {route.breadcrumbName}</Link>
-    }
-
+const Index = () => {
     return (
         <div className="brandcurm_box">
-            <Breadcrumb separator={<Icon type="double-right" />} className="gx-my-3 brandcurm gx-pb-2 gx-mx-auto" itemRender={itemRender} routes={routes} />
+            <Row className=" gx-mx-5 gx-text-center gx-py-3 gx-text-white index_page">
+                <Col span={8} >
+                    <div className="item_index">
+                        <span><Icon type="user" /></span>
+                        <p className="gx-mb-0">   Trở thành thành viên</p>
+                    </div>
+                </Col>
+                <Col span={8} >
+                    <div className="item_index">
+                        <span><Icon type="file-pdf" /></span>
+                        <p className="gx-mb-0">   Chia sẻ <br/> tài liệu</p>
+                    </div>
+                </Col>  <Col span={8} >
+                    <div className="item_index">
+                        <span><Icon type="global" /></span>
+                        <p className="gx-mb-0">  Cộng đồng Share</p>
+                    </div>
+                </Col>
+            </Row>
         </div>
     )
 }
+export default Index;
