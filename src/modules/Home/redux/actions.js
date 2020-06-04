@@ -28,6 +28,12 @@ export const searchDocsHome = (payload) => {
         payload
     }
 }
+export const searchDocs = (payload) => {
+    return {
+        type: Types.SEARCH_DOCS,
+        payload
+    }
+}
 export const paginationAction = (payload) => {
     return {
         type: Types.PAGINATION,

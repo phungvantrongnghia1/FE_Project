@@ -6,19 +6,24 @@ import Category from "../components/Category";
 import FeatureDocument from "../../Document/components/FeaturedCourses";
 import { getDocsShare, paginationAction } from "../redux/actions";
 import DocsItem from "../../Document/components/item";
-import { reShareDocsAction, getDocsCate } from "../../Document/redux/actions"
+import { reShareDocsAction, getDocsCate,searchDocs } from "../../Document/redux/actions"
 const Index = () => {
     const dispatch = useDispatch();
     const { docsShare, pagination, docsSearch } = useSelector(state => state.Home);
     const { docsCate } = useSelector(
         (state) => state.Document
     )
-    console.log('docsCate :>> ', docsCate);
-    console.log(docsShare);
     useEffect(() => {
         dispatch(getDocsShare())
         dispatch(getDocsCate());
     }, [])
+    const searchDocsFn = (payload) => {
+        dispatch(
+            searchDocs({
+                payload
+            })
+        );
+    };
     const reShareDocs = (payload) => {
         dispatch(
             reShareDocsAction({
@@ -72,7 +77,7 @@ const Index = () => {
         <div>
             <FeatureDocument title="Tài liệu nổi bật" data={docsShare} />
             <h5 className="gx-py-2 gx-m-0 gx-font-weight-bold"><Icon className="gx-mr-2" type="double-right" />Tất cả tài liệu</h5>
-            <Category docsCate={docsCate}/>
+            <Category docsCate={docsCate} searchDocsFn={searchDocsFn}/>
             {docsSearch.length !== 0 && docsSearch.status ? (
                 <>{renderDocsearch}</>
             ) : (

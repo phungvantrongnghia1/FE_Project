@@ -76,7 +76,7 @@ export const changePasswordFromApi = async (data, token) => {
   const request = await axios({
     method: "post",
     headers: { Authorization: token },
-    url: `${process.env.APP_URL}/customer/change-password`,
+    url: `${process.env.APP_URL}/user/change-password`,
     data
   });
   return request;
@@ -95,7 +95,7 @@ export const updateProfileFromApi = async (data, token) => {
   const request = await axios({
     method: "post",
     headers: { Authorization: token },
-    url: `${process.env.APP_URL}/customer/update-profile`,
+    url: `${process.env.APP_URL}/user/update-profile`,
     data
   });
   return request;

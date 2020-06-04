@@ -45,7 +45,22 @@ export default function NewsPreducer(state = initialState, action) {
                     }
                 }
                 break;
-            } 
+            }
+            case Types.SEARCH_DOCS: {
+                if (payload.payload === 'Tất cả') {
+                    draft.docsSearch = {
+                        status: false,
+                        data: []
+                    }
+                } else {
+                    let docsUpdate = state.docsShare.filter(doc => doc.CategoryDocumentId === parseInt(payload.payload));
+                    draft.docsSearch = {
+                        status: true,
+                        data: docsUpdate
+                    }
+                }
+                break;
+            }
             case Types.PAGINATION: {
                 let paginationUpdate = { ...state.pagination };
                 paginationUpdate.currentPage = payload;

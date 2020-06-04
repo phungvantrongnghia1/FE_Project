@@ -1,14 +1,19 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo } from 'react';
+import { withRouter } from "react-router-dom";
 import { Menu, Dropdown, Icon, Row, Col, Button } from 'antd';
 import "./style.less"
 const Index = (props) => {
     const [category, setCategory] = useState('Tất cả'),
-        { docsCate } = props;
+        [idCategory, setIdCategory] = useState('Tất cả'),
+        { docsCate,searchDocsFn } = props;
     const menu = useMemo(() => {
         return (
-            <Menu onClick={value => setCategory(value.key)}>
+            <Menu onClick={value => { setCategory(value.key), searchDocsFn(value.item.props.value), props.history.push({ search: `?cate=${value.key}` }) }}>
+                <Menu.Item key={"Tất cả"} value={"Tất cả"}>
+                    Tất cả
+                    </Menu.Item>
                 {
-                    docsCate.map(doc => (<Menu.Item key={doc.Title}>
+                    docsCate.map(doc => (<Menu.Item key={doc.Title} value={doc.Id}>
                         {doc.Title}
                     </Menu.Item>))
                 }
@@ -16,7 +21,7 @@ const Index = (props) => {
         );
     }, [docsCate])
     const menuFile = () => (
-        <Menu onClick={value => setCategory(value.key)}>
+        <Menu>
 
             <Menu.Item key="pdf">
                 PDF
@@ -51,4 +56,4 @@ const Index = (props) => {
         </Row>
     )
 }
-export default Index;
+export default withRouter(Index);

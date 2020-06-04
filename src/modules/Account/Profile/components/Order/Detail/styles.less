@@ -1,0 +1,82 @@
+.vz-history {
+  position: relative;
+
+  .vz-progress {
+    width: 100%;
+    position: absolute;
+    align-self: flex-end;
+    display: flex;
+    align-items: flex-end;
+
+    .ant-progress-inner {
+      vertical-align: top;
+      border-radius: 0;
+    }
+
+    .ant-progress-bg {
+      border-radius: 0;
+    }
+
+    .ant-progress-line {
+      position: absolute;
+      right: 0;
+      margin-right: 0 !important;
+      margin-bottom: 0 !important;
+
+      .ant-progress-outer {
+        font-size: 0 !important;
+      }
+    }
+  }
+}
+
+/* Dành cho điện thoại */
+@media all and (min-width: 320px) {
+  .vz-img-certificate {
+    width: auto !important;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .vz-btn-review {
+    span {
+      font-size: 15px;
+    }
+  }
+
+  .profile-history {
+    h2 {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+/* Dành cho máy tính bảng chiều dọc */
+@media all and (min-width: 600px) {
+  .vz-progress {
+    .ant-progress-line {
+      width: 75%;
+    }
+  }
+
+  .vz-history {
+    .gx-product-footer {
+      padding-top: 0 !important;
+      padding: 0 !important;
+      padding-bottom: 0 !important;
+      width: 20%;
+    }
+  }
+}
+
+/* Dành cho máy tính bảng chiều ngang */
+@media all and (min-width: 1024px) {}
+
+/* Dành cho màn hình desktop */
+@media all and (min-width: 1280px) {}
+
+@media all and (min-width: 1400px) {
+  .gx-product-horizontal .gx-product-image .gx-grid-thumb-equal {
+    padding-bottom: 82%;
+  }
+}
