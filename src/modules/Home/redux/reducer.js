@@ -3,6 +3,7 @@ import produce from "immer";
 
 const initialState = {
     featureDocs: [],
+    publicDocs:[],
     docsShare: [],
     docsSearch: {
         status: false,
@@ -21,6 +22,10 @@ export default function NewsPreducer(state = initialState, action) {
         switch (action.type) {
             case Types.GET_FEATURE_DOCS_SUCCESS: {
                 draft.featureDocs = payload
+                break;
+            }
+            case Types.GET_DOCS_PUBLIC_SUCCESS: {
+                draft.publicDocs = payload
                 break;
             }
             case Types.GET_DOCS_SHARE_SUCCESS: {

@@ -33,7 +33,7 @@ export default function NewsPreducer(state = initialState, action) {
                 break;
             }
             case Types.CREATE_DOC_SUCCESS: {
-                draft.docsList = [...state.docsList, payload]
+                draft.docsList = [...state.docsList, payload[0]];
                 break;
             }
             case Types.UPDATE_DOC_SUCCESS: {
@@ -56,6 +56,7 @@ export default function NewsPreducer(state = initialState, action) {
                 }
                 break;
             } case Types.DELETE_DOC_SUCCESS: {
+                console.log(payload);
                 let docsUpdate = state.docsList.filter(item => item.Id !== payload[0].Id);
                 draft.docsList = [...docsUpdate]
                 break;

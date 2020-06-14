@@ -6,6 +6,7 @@ const FileUpload = forwardRef((props, ref) => {
   const { actCreate, url, typeFileUpload, buttonClick, cbOnChange } = props;
   const [fileAvatar, setFileAvatar] = useState(null),
     [fileList, setFileList] = useState([]);
+    console.log('url', url)
   useEffect(() => {
     if (!actCreate) {
       setFileList([
@@ -103,7 +104,7 @@ const FileUpload = forwardRef((props, ref) => {
         {buttonClick}
       </Upload>
       {fileAvatar ? <p>{fileAvatar.name}</p> : <></>}
-      {url && !fileAvatar ? <a href={`${process.env.APP_URL}${url.url}`} target={"_blank"}>{url.fileName}</a> : <></>}
+      {url && !fileAvatar ? <a href={url.url} target={"_blank"}>{url.fileName}</a> : <></>}
     </>
   );
 });

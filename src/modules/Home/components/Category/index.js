@@ -4,7 +4,6 @@ import { Menu, Dropdown, Icon, Row, Col, Button } from 'antd';
 import "./style.less"
 const Index = (props) => {
     const [category, setCategory] = useState('Tất cả'),
-        [idCategory, setIdCategory] = useState('Tất cả'),
         { docsCate,searchDocsFn } = props;
     const menu = useMemo(() => {
         return (

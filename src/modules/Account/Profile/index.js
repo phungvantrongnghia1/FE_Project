@@ -15,29 +15,7 @@ const Index = React.memo(() => {
         { loaderComponent } = useSelector((state) => state.GeneralReducer),
         dispatch = useDispatch();
     console.log('authUser', authUser)
-    useEffect(() => {
-        onGetListCoursePurchased();
-    }, []);
-
-    const onGetListCoursePurchased = (strQuery) => {
-        return null;
-    }
-    // dispatch(getListCoursePurchased(strQuery));
-
-    const onGetListCourseFavorited = (strQuery) => {
-        return;
-    }
-    // dispatch(getListCourseFavorited(strQuery));
-
-    const onGetListMessage = (strQuery) => {
-        return;
-    }
-    //   dispatch(getListMessage(strQuery));
-
-    const onGetListOrders = (strQuery) => {
-        return;
-    }
-    //   dispatch(getListOrders(strQuery));
+ 
 
     return (
         <div className="gx-px-5 gx-my-3 set-layout-1200">
@@ -57,14 +35,7 @@ const Index = React.memo(() => {
                 </Col>
                 <Col lg={18} xl={18} md={24} xs={24}>
                     <TabContainer
-                        onGetListCoursePurchased={(strQuery) =>
-                            onGetListCoursePurchased(strQuery)
-                        }
-                        onGetListCourseFavorited={(strQuery) =>
-                            onGetListCourseFavorited(strQuery)
-                        }
-                        onGetListMessage={(strQuery) => onGetListMessage(strQuery)}
-                        onGetListOrders={(strQuery) => onGetListOrders(strQuery)}
+
                     />
                     {loaderComponent ? (
                         <div className="st-loader-view-mask gx-position-absolute gx-h-100">

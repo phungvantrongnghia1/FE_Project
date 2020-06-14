@@ -28,6 +28,7 @@ const Index = React.memo((props) => {
    * @summary Show Course By Slide
    */
   const showSlideDocs = (data) => {
+    console.log('data', data)
     let result = null;
     if (data && data.length > 0) {
       result = data.map((item, index) => {
@@ -42,6 +43,7 @@ const Index = React.memo((props) => {
         );
       });
     }
+    console.log('result', result)
     return result;
   };
 
@@ -49,7 +51,7 @@ const Index = React.memo((props) => {
     <div className="featured-courses  mobile-hidden gx-mt-3">
       <Title
         title={props.title}
-        subTitle="Phần nội dung này sẽ giới thiệu đến các bạn các khóa học được đánh giá là nổi bật"
+        subTitle="Document"
       />
       <Slider {...settings}>{showSlideDocs(data)}</Slider>
     </div>

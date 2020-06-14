@@ -24,8 +24,7 @@ const Index = (props) => {
   };
 
   const handleOk = (e) => {
-    console.log('stateTag.tags :>> ', stateTag.tags);
-    let payload = {
+    let payload = {  
       id: value.Id,
       user_Share: [...stateTag.tags]
     }
@@ -114,7 +113,7 @@ const Index = (props) => {
           <Link to={`/document-detail/${value.Id}`}>
             <img
               alt="example"
-              src={`${process.env.APP_URL}${JSON.parse(value.Image).url}`}
+              src={JSON.parse(value.Image).url}
             />
           </Link>
         }
@@ -212,7 +211,7 @@ const Index = (props) => {
               <Link to={`/document-detail/${value.Id}`}>
                 <img
                   alt="example"
-                  src={`${process.env.APP_URL}${JSON.parse(value.Image).url}`}
+                  src={JSON.parse(value.Image).url}
                 />
               </Link>
             }

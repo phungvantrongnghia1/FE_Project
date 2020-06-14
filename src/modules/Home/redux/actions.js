@@ -11,6 +11,18 @@ export const getFeatureDocsSuccess = (payload) => {
         payload
     }
 }
+export const getDocsPublic = (payload) => {
+    return {
+        type: Types.GET_DOCS_PUBLIC,
+        payload
+    }
+}
+export const getDocsPublicSuccess = (payload) => {
+    return {
+        type: Types.GET_DOCS_PUBLIC_SUCCESS,
+        payload
+    }
+}
 export const getDocsShare = () => {
     return {
         type: Types.GET_DOCS_SHARE

@@ -15,3 +15,10 @@ export const getDocShareFromApi = async (token) => {
     })
     return request;
 }
+export const getDocPublicFromApi = async () => {
+    const request = await axios({
+        method:'get',
+        url:`${process.env.APP_URL}/document-share/get_docs_public`
+    })
+    return request;
+}

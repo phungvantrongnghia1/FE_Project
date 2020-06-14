@@ -3,14 +3,12 @@ import Title from "../components/Detail/Title";
 import Auth from "../components/Detail/Auth";
 import PDF from "../components/Detail/PDF";
 import { useSelector, useDispatch } from "react-redux";
-import { NotificationManager } from 'react-notifications';
 import FeatureDocs from "../components/FeaturedCourses";
 import Content from "../components/Detail/Content";
 import Comment from "../components/Detail/Comment";
 import { getDocsDetail } from "../redux/actions";
 const Index = (props) => {
     const { docsList, docsDetail } = useSelector(state => state.Document);
-    console.log('docsDetail :>> ', docsDetail);
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(

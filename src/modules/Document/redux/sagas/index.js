@@ -88,6 +88,7 @@ function* onCreateDoc(action) {
     if (response.data.status_code === 200) {
       yield callbackSuccess(response.data.message);
       yield put(createDocsSuccess(response.data.data));
+      console.log("ngay day");
     } else {
       yield callbackEror();
     }
