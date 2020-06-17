@@ -1,0 +1,84 @@
+.category_dropdown {
+  align-items: center;
+}
+.category_dropdown .dropdown_box {
+  border: 1px solid #e8e8e8;
+  padding: 10px 20px;
+  margin: 11px 15px;
+  border-radius: 5px;
+}
+.category_btn {
+  justify-content: flex-end;
+}
+.category_btn button {
+  border-color: transparent !important;
+  transition: 0.6s;
+}
+.category_btn button:hover i {
+  color: #05a989;
+}
+.category .centered {
+  display: flex;
+  align-items: center;
+}
+
+.featured-courses .gx-course-border {
+  border-radius: 5px!important;
+}
+.featured-courses .gx-course-border img {
+  border-radius: 5px 0px 0px 5px!important;
+}
+.featured-courses .slick-slider {
+  margin-bottom: 0;
+}
+.featured-courses .slick-slider .slick-dots {
+  display: none !important;
+}
+.featured-courses .slick-slider .slick-arrow {
+  z-index: 9;
+}
+.featured-courses .slick-slider .slick-next {
+  right: -25px;
+}
+.featured-courses .slick-slider .slick-prev {
+  left: -25px;
+}
+.featured-courses .slick-slider .ant-card.document.gx-mx-2.ant-card-bordered {
+  width: 260px !important;
+}
+.featured-courses .slick-slider .ant-card.document.gx-mx-2.ant-card-bordered .ant-card-cover {
+  margin: 0 auto;
+}
+.featured-courses .slick-prev:before,
+.featured-courses .slick-next:before {
+  font-size: 50px !important;
+  color: #d4d4d4 !important;
+  z-index: 9999 !important;
+  line-height: 0;
+}
+.featured-courses .slick-slider .slick-arrow {
+  width: 50px !important;
+  height: 50px !important;
+  background-color: #fff;
+  border-radius: 25px;
+  box-shadow: 0 0 3px 0px #868686;
+}
+.featured-courses .slick-prev:before {
+  content: "‹";
+}
+.featured-courses .slick-next:before {
+  content: "›";
+}
+@media only screen and (max-width: 768px) {
+  .featured-courses .gx-course-featured .course-img .gx-course-img img {
+    min-height: 100%;
+    object-fit: unset;
+  }
+  .featured-courses .gx-course-featured .course-body {
+    padding: 26px 24px 30px 30px;
+  }
+  .featured-courses .gx-course-featured .course-body .gx-course-title .course-title h3 {
+    width: 90%;
+  }
+}
+

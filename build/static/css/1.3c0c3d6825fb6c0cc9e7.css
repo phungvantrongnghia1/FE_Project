@@ -1,0 +1,58 @@
+.document {
+  cursor: pointer;
+  transition: 0.6s;
+}
+.document_title .ant-card-meta-title {
+  transition: 0.6s;
+  font-weight: 900;
+}
+.document_title .ant-card-meta-title:hover {
+  color: #404272;
+}
+.document_title .ant-card-meta-description {
+  color: gray;
+}
+.document_icon {
+  display: flex;
+  justify-content: center;
+}
+.document_icon span {
+  width: 33.33%;
+  display: inline-block;
+  text-align: center;
+  color: #989898;
+}
+.document:hover {
+  box-shadow: 0px 3px 6px 1px #98989879;
+}
+.document .ant-card-cover {
+  max-width: 258.4px !important;
+  max-height: 163.54px !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+.document .ant-card-cover img {
+  width: 100%;
+  height: 163.54px;
+  object-fit: fill;
+}
+.dropdown {
+  position: absolute;
+  bottom: 0;
+  right: 6px;
+}
+.dropdown .ant-btn-group.ant-dropdown-button .ant-btn.ant-btn-default:first-child {
+  display: none;
+}
+.dropdown .ant-btn-group.ant-dropdown-button .ant-btn.ant-btn-default:last-child {
+  background-color: transparent;
+  border: transparent;
+}
+.dropdown .ant-btn-group.ant-dropdown-button .ant-btn.ant-btn-default:last-child i {
+  font-size: 30px;
+  font-weight: 700;
+}
+.box_document {
+  position: relative;
+}
+

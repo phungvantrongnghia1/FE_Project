@@ -1,0 +1,83 @@
+.ant-table-tbody > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td {
+  background: #fff !important;
+  cursor: pointer;
+}
+.ant-table-thead > tr > th {
+  background: #3f51b5;
+  border-right: 1px solid #fff;
+  color: #fff;
+}
+.ant-table-thead > tr:first-child > th:first-child {
+  border-top-left-radius: 0;
+}
+.ant-table-thead > tr:last-child > th:last-child {
+  border-top-right-radius: 0;
+}
+/*Smart phone nhỏ*/
+/*Iphone(480 x 640)*/
+/*Tablet nhỏ(480 x 640)*/
+/*Ipad dọc(768 x 1024)*/
+@media screen and (min-width: 768px) {
+  .vz-custome-tabs {
+    height: 100%;
+  }
+  .vz-custome-tabs .ant-tabs-nav {
+    float: right;
+  }
+}
+/*Ipad ngang(1024 x 768)*/
+
+.avatar-editor .ant-slider-track {
+  background-color: #212f9c !important;
+}
+
+.vz-popup-profile .ant-modal-close-x {
+  width: 30px;
+  height: 30px;
+  font-size: 10px;
+  line-height: 30px;
+}
+.vz-popup-profile .ant-form-item-control-wrapper {
+  width: 100%;
+}
+.vz-popup-profile .vz-form-profile .ant-col {
+  padding-left: 0;
+  padding-right: 0.1rem;
+}
+.vz-popup-profile .vz-form-profile .ant-form-item {
+  margin-bottom: 0;
+}
+.vz-popup-profile .vz-form-profile .ant-select-selection {
+  border-radius: 0;
+}
+.vz-popup-profile .ant-calendar-picker input {
+  border-radius: 0px;
+}
+.custome-select .ant-select-dropdown-menu-item-active {
+  background-color: #4caf50;
+  color: #ffff;
+}
+.custome-select .ant-select-dropdown-menu-item {
+  border-radius: 0;
+}
+.custome-select .ant-select-dropdown-menu-item:hover {
+  background-color: #4caf50;
+  color: #fff;
+}
+.icon-upload-avatar {
+  bottom: 0;
+  position: absolute;
+  font-size: 15px;
+  cursor: pointer;
+  color: #fff;
+  padding: 10px;
+  opacity: 0.7;
+  background: #cccccc78;
+  right: -10px;
+  border-radius: 50%;
+}
+.icon-upload-avatar:hover {
+  opacity: 1;
+  background: #cccccc7a;
+}
+

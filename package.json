@@ -107,7 +107,6 @@
   },
   "lint-staged": {
     "*.{js,jsx}": [
-      "./node_modules/.bin/eslint --fix",
       "git add"
     ]
   },
