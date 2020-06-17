@@ -6,7 +6,7 @@ const ExamplePDFViewer = (props) => {
     const renderPDF = useMemo(() => {
         return <PDFViewer canvasCss="pdf gx-text-center"
             document={{
-                url: `${process.env.APP_URL}${url}`
+                url:url
             }}
         />
     },[url])

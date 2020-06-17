@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import ReactDOM from 'react-dom';
 import { Comment, Avatar, Form, Button, List, Input } from 'antd';
 import moment from 'moment';
@@ -7,31 +7,24 @@ const { TextArea } = Input;
 const Index = () => {
     const [comments, setComments] = useState(''),
         [submitting, setSubmitting] = useState(false),
-        [value, setValue] = useState('');
+        textAreaRef = useRef();
     const handleSubmit = () => {
-        if (!value) {
+        if (!textAreaRef.current.textAreaRef.value) {
             return;
         }
         setSubmitting(true);
-
-        setTimeout(() => {
-            setSubmitting(false);
-            setValue('');
-            setComments([
-                {
-                    author: 'Trọng Nghĩa',
-                    avatar: 'https://scontent.fsgn2-2.fna.fbcdn.net/v/t1.0-9/p960x960/52179284_2188866038093901_4745850072221089792_o.jpg?_nc_cat=102&_nc_sid=7aed08&_nc_ohc=h50ADhqeBqwAX-jpsDe&_nc_ht=scontent.fsgn2-2.fna&_nc_tp=6&oh=a57cbbf6348919e0d85a746cd448d3c3&oe=5EED5364',
-                    content: <p>{value}</p>,
-                    datetime: moment().fromNow()
-                },
-                ...comments
-            ])
-        }, 1000);
+        setSubmitting(false);
+        setComments([
+            {
+                author: 'Trọng Nghĩa',
+                avatar: 'https://scontent.fsgn2-2.fna.fbcdn.net/v/t1.0-9/p960x960/52179284_2188866038093901_4745850072221089792_o.jpg?_nc_cat=102&_nc_sid=7aed08&_nc_ohc=h50ADhqeBqwAX-jpsDe&_nc_ht=scontent.fsgn2-2.fna&_nc_tp=6&oh=a57cbbf6348919e0d85a746cd448d3c3&oe=5EED5364',
+                content: textAreaRef.current.textAreaRef.value,
+                datetime: moment().fromNow()
+            },
+            ...comments
+        ])
     };
 
-    const handleChange = e => {
-        setValue(e.target.value)
-    };
 
     const CommentList = ({ comments }) => (
         <List
@@ -41,10 +34,10 @@ const Index = () => {
             renderItem={props => <Comment {...props} />}
         />
     );
-    const Editor = ({ onChange, onSubmit, submitting, value }) => (
+    const Editor = ({ onSubmit, submitting }) => (
         <div>
             <Form.Item>
-                <TextArea className="gx-ml-2 gx-w-50" rows={4} onChange={onChange} value={value} />
+                <TextArea className="gx-ml-2 gx-w-50" rows={4} ref={textAreaRef} />
             </Form.Item>
             <Form.Item>
                 <Button htmlType="submit" loading={submitting} onClick={onSubmit} type="primary">
@@ -65,10 +58,8 @@ const Index = () => {
                 }
                 content={
                     <Editor
-                        onChange={handleChange}
                         onSubmit={handleSubmit}
                         submitting={submitting}
-                        value={value}
                     />
                 }
             />

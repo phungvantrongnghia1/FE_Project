@@ -1,17 +1,19 @@
 import React, { useEffect, useMemo } from 'react';
-import { Icon, Row, Col, Pagination, Result, Button } from "antd";
+import { Icon, Row, Col, Pagination, Result, Button, Spin } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { NotificationManager } from 'react-notifications';
 import Category from "../components/Category";
 import FeatureDocument from "../../Document/components/FeaturedCourses";
 import { getDocsShare, paginationAction, getDocsPublic } from "../redux/actions";
-import {  showModalLogin } from 'modules/Account/redux/actions';
+import { showModalLogin } from 'modules/Account/redux/actions';
 import DocsItem from "../../Document/components/item";
 import { reShareDocsAction, getDocsCate, searchDocs } from "../../Document/redux/actions"
 const Index = () => {
     const dispatch = useDispatch();
     const { docsShare, pagination, docsSearch, publicDocs } = useSelector(state => state.Home),
-        { authUser } = useSelector((state) => state.AuthReducer);
+        { authUser } = useSelector((state) => state.AuthReducer),
+        { loadingBTN } = useSelector((state) => state.GeneralReducer);
+    console.log('loadingBTN', loadingBTN)
     const { docsCate } = useSelector(
         (state) => state.Document
     )
@@ -32,7 +34,7 @@ const Index = () => {
     };
     const _onShowLogin = (boolean) => {
         dispatch(showModalLogin(boolean));
-      };
+    };
     const reShareDocs = (payload) => {
         dispatch(
             reShareDocsAction({
@@ -84,27 +86,29 @@ const Index = () => {
     }, [docsShare, pagination]);
     return (
         <div>
-            <FeatureDocument title="Tài liệu nổi bật" data={authUser ? docsShare : publicDocs} />
-            <h5 className="gx-py-2 gx-m-0 gx-font-weight-bold"><Icon className="gx-mr-2" type="double-right" />Tất cả tài liệu</h5>
-            {authUser ? (
-                <Category docsCate={docsCate} searchDocsFn={searchDocsFn} />) : <Result
-                    title="Đăng nhập để xem thêm tài liệu"
-                    extra={
-                        <Button type="primary" onClick={() => _onShowLogin(true)}>
-                            Đăng nhập
+            <Spin spinning={loadingBTN}  delay={500} indicator={<Icon type="loading" style={{ fontSize: 24 }} spin />}>
+                <FeatureDocument title="Tài liệu nổi bật" data={authUser ? docsShare : publicDocs} />
+                <h5 className="gx-py-2 gx-m-0 gx-font-weight-bold"><Icon className="gx-mr-2" type="double-right" />Tất cả tài liệu</h5>
+                {authUser ? (
+                    <Category docsCate={docsCate} searchDocsFn={searchDocsFn} />) : <Result
+                        title="Đăng nhập để xem thêm tài liệu"
+                        extra={
+                            <Button type="primary" onClick={() => _onShowLogin(true)}>
+                                Đăng nhập
       </Button>
-                    }
-                />}
+                        }
+                    />}
 
-            {docsSearch.length !== 0 && docsSearch.status && authUser ? (
-                <>{renderDocsearch}</>
-            ) : (
-                    <>{renderDocsShare}</>
-                )}
-            {authUser ? (<div className="gx-text-center"><Pagination pageSize={12}
-                current={pagination.currentPage}
-                onChange={handlePagination}
-                total={pagination.totalPages * 10} /></div>) : <></>}
+                {docsSearch.length !== 0 && docsSearch.status && authUser ? (
+                    <>{renderDocsearch}</>
+                ) : (
+                        <>{renderDocsShare}</>
+                    )}
+                {authUser ? (<div className="gx-text-center"><Pagination pageSize={12}
+                    current={pagination.currentPage}
+                    onChange={handlePagination}
+                    total={pagination.totalPages * 10} /></div>) : <></>}
+            </Spin>
         </div>
     )
 }

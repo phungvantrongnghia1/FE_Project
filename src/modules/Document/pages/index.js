@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from 'react';
 import Item from '../components/item';
-import { Row, Col, Pagination, Result, Button } from 'antd';
+import { Row, Col, Pagination, Result, Button,Spin,Icon } from 'antd';
 import { showModalLogin } from 'modules/Account/redux/actions';
 import { useSelector, useDispatch } from 'react-redux';
 import { NotificationManager } from 'react-notifications';
@@ -16,7 +16,8 @@ const Index = () => {
   const { docsList, docsCate, docsSearch, pagination } = useSelector(
     (state) => state.Document
   ),
-    { authUser } = useSelector((state) => state.AuthReducer);
+    { authUser } = useSelector((state) => state.AuthReducer),
+    { loadingBTN } = useSelector((state) => state.GeneralReducer);
   useEffect(() => {
     dispatch(getDocs());
     dispatch(getDocsCate());
@@ -92,7 +93,7 @@ const Index = () => {
     );
   }, [docsList, pagination]);
   return (
-    <>
+    <Spin spinning={loadingBTN}  delay={500} indicator={<Icon type="loading" style={{ fontSize: 24 }} spin />}>
       {authUser ? <>
         {
           docsSearch.length !== 0 && docsSearch.status ? (
@@ -116,7 +117,7 @@ const Index = () => {
           extra={<Button type="primary" onClick={() => _onShowLogin(true)}>Đăng nhập</Button>}
         />}
 
-    </>
+      </Spin>
   );
 };
 export default Index;

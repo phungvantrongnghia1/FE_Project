@@ -8,10 +8,9 @@ import {
   Select,
   Row,
   Col,
-  Button,
-  Modal,
-  InputNumber
+  Button
 } from 'antd';
+import {useSelector} from "react-redux";
 import { createDoc, updateDoc } from 'modules/Document/redux/actions';
 import FileUpload from '../FileUpload';
 
@@ -23,7 +22,8 @@ const { TextArea } = Input;
 const Index = (props) => {
   const dispatch = useDispatch();
   const refUploadImage = useRef();
-  const refUploadFile = useRef();
+  const refUploadFile = useRef(),
+  { loadingBTN } = useSelector((state) => state.GeneralReducer);
   const { getFieldDecorator } = props.form,
     { data, docsCate, typeAc } = props;
   console.log('data :>> ', data);
@@ -157,7 +157,7 @@ const Index = (props) => {
         </Col>
       </Row>
       <div className="gx-text-right">
-        <Button type="primary" onClick={_onSubmit}>
+        <Button type="primary" onClick={_onSubmit} loading={loadingBTN}>
           {typeAc ? 'Thêm' : 'Cập nhật'}
         </Button>
       </div>

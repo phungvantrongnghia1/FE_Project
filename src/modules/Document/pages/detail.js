@@ -3,12 +3,12 @@ import Title from "../components/Detail/Title";
 import Auth from "../components/Detail/Auth";
 import PDF from "../components/Detail/PDF";
 import { useSelector, useDispatch } from "react-redux";
-import FeatureDocs from "../components/FeaturedCourses";
 import Content from "../components/Detail/Content";
 import Comment from "../components/Detail/Comment";
 import { getDocsDetail } from "../redux/actions";
 const Index = (props) => {
-    const { docsList, docsDetail } = useSelector(state => state.Document);
+    const { docsDetail } = useSelector(state => state.Document);
+    console.log('docsDetail', docsDetail.File);
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(
@@ -27,7 +27,6 @@ const Index = (props) => {
             <Content docsDetail={docsDetail} />
             <h2 className="gx-font-weight-bold">Bình luận</h2>
             <Comment />
-            <div className="gx-mt-3"><FeatureDocs data={docsList} title={"Tài liệu liên quan"} /></div>
         </div>
     )
 }
